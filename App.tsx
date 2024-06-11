@@ -15,7 +15,7 @@ function App(): React.JSX.Element {
 
   return (
    <SafeAreaView style={styles.root}>
-    <Register/>
+    <Login/>
    </SafeAreaView>
   );
 }

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Text, View, Image, StyleSheet, useWindowDimensions } from 'react-native';
+import { Text, View, Image, useWindowDimensions, ScrollView } from 'react-native';
 import Logo from '../../../../assets/images/logo-book.png';
 import RegisterInput from '../_components/input';
 import RegisterButton from '../_components/button';
+import { authStyles as styles} from '../styles';
 
 const Register = () => {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [confirmPassword, setConfirmPassword] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
 
     const { height } = useWindowDimensions();
 
@@ -20,34 +22,19 @@ const Register = () => {
         console.warn("Login");
     }
 
-    const styles = StyleSheet.create({
-        root: {
-            alignItems: 'center'
-        },
-        logo: {
-            width: '40%',
-            height: 100,
-            maxWidth: 300,
-            maxHeight: 300,
-        },
-        title: {
-            fontSize: 40,
-            fontWeight: "600",
-            padding: 10,
-            color: '#000'
-        }
-    })
-
     return (
-        <View style={styles.root}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.root}>
             <Image source={Logo} style={[styles.logo, {height: height * 0.3}]} resizeMode='contain'/>
             <Text style={styles.title}>Books Finder</Text>
             <RegisterInput placeholder='Nome de usuário' value={username} setValue={setUsername}/>
+            <RegisterInput placeholder='Email' value={email} setValue={setEmail}/>
             <RegisterInput placeholder='Senha' value={password} setValue={setPassword} isSecureTextEntry={true}/>
             <RegisterInput placeholder='Confirmar senha' value={confirmPassword} setValue={setConfirmPassword} isSecureTextEntry={true}/>
             <RegisterButton onPress={onRegisterPress} title='Registrar'/>
-            <RegisterButton onPress={onLoginPress} title='Já possui uma conta?' type='secondary'/>
+            <RegisterButton onPress={onLoginPress} title='Já possui uma conta?' type='terciary'/>
         </View>
+      </ScrollView>
     )
 
 }
