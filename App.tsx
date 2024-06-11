@@ -1,9 +1,18 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { SafeAreaView, StyleSheet, Text } from 'react-native';
 
 function App(): React.JSX.Element {
+
+  const styles = StyleSheet.create({
+    root: {
+      flex: 1,
+    }
+  })
+
   return (
-   <Text>Hello World!</Text>
+   <SafeAreaView style={styles.root}>
+    <Text>Hello World</Text>
+   </SafeAreaView>
   );
 }
 
