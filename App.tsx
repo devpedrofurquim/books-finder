@@ -8,7 +8,8 @@ function App(): React.JSX.Element {
   const styles = StyleSheet.create({
     root: {
       flex: 1,
-      margin: 20,
+      padding: 20,
+      backgroundColor: '#f6f6f6'
     },
   })
 
