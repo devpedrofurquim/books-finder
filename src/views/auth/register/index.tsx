@@ -11,6 +11,18 @@ const Register = () => {
 
     const { height } = useWindowDimensions();
 
+    function onRegisterPress() {
+        console.warn("Register");
+    }
+
+    function onLoginPress() {
+        console.warn("Login");
+    }
+
+    function onPasswordPress() {
+        console.warn("Password");
+    }
+
     const styles = StyleSheet.create({
         root: {
             alignItems: 'center'
@@ -35,6 +47,9 @@ const Register = () => {
             <Text style={styles.title}>Books Finder</Text>
             <RegisterInput placeholder='Nome de usuário' value={username} setValue={setUsername}/>
             <RegisterInput placeholder='Senha' value={password} setValue={setPassword} isSecureTextEntry={true}/>
+            <RegisterButton onPress={onRegisterPress} title='Registrar'/>
+            <RegisterButton onPress={onLoginPress} title='Já possui uma conta?' type='secondary'/>
+            <RegisterButton onPress={onPasswordPress} title='Esqueceu sua senha?' type='terciary'/>
         </View>
     )
 

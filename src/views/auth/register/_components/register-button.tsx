@@ -1,21 +1,39 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 
-const RegisterButton = () => {
+interface RegisterButtonProps {
+  title: string;
+  onPress: () => void;
+  type?: "primary" | "secondary" | "terciary";
+}
+
+const RegisterButton = ({type = "primary", title, onPress} : RegisterButtonProps) => {
 
   const styles = StyleSheet.create({
     container: {
-        backgroundColor: "blue"
-    },
-    button: {
+        backgroundColor: type === "primary" ? "gray" : "",
+        width: "100%",
+        marginVertical: 10,
+
+        padding: 10,
+
+        alignItems: 'center',
         
+        borderRadius: 10,
+        borderWidth: type === "secondary" ? 1 : 0,
+        borderColor: type === "secondary" ? "black" : ""
+    },
+    text: {
+        fontSize: type == "terciary" ? 15 : 20,
+        fontWeight: 'bold',
+        color: type === "primary" ? "white" : "black"
     }
   })
     
   return (
-    <View style={styles.container}>
-      <Text>TESTE TESTE</Text>
-    </View>
+    <Pressable onPress={onPress} style={styles.container}>
+      <Text style={styles.text}>{title}</Text>
+    </Pressable>
   )
 }
 

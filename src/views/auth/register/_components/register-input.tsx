@@ -16,8 +16,6 @@ const RegisterInput = ({placeholder, value, setValue, isSecureTextEntry} : Regis
             width: "100%",
 
             borderRadius: 10,
-            borderColor: '#000',
-            borderWidth: 2,
 
             paddingHorizontal: 20,
 
