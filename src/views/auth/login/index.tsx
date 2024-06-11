@@ -24,7 +24,7 @@ const Login = () => {
         <ScrollView showsHorizontalScrollIndicator={false}>
             <View style={styles.root}>
                 <Image source={Logo} style={[styles.logo, {height: height * 0.3}]} resizeMode='contain'/>
-                <Text style={styles.title}>Books Finder</Text>
+                <Text style={styles.title}>Acessar Conta</Text>
                 <RegisterInput  placeholder='Nome de usuário' value={username} setValue={setUsername}/>
                 <RegisterInput placeholder='Senha' value={password} setValue={setPassword} isSecureTextEntry={true}/>
                 <RegisterButton onPress={onLoginPress} title='Entrar'/>

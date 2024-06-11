@@ -15,23 +15,33 @@ const Register = () => {
     const { height } = useWindowDimensions();
 
     function onRegisterPress() {
-        console.warn("Register");
+        console.warn("Registrar");
     }
 
     function onLoginPress() {
-        console.warn("Login");
+        console.warn("Entrar");
+    }
+
+    function onTermsOfUsePress() {
+        console.warn("Termos de Uso");
+    }
+
+    function onPrivacyPolicyPress() {
+        console.warn("Política de Privacidade");
     }
 
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.root}>
             <Image source={Logo} style={[styles.logo, {height: height * 0.3}]} resizeMode='contain'/>
-            <Text style={styles.title}>Books Finder</Text>
+            <Text style={styles.title}>Criar Conta</Text>
             <RegisterInput placeholder='Nome de usuário' value={username} setValue={setUsername}/>
             <RegisterInput placeholder='Email' value={email} setValue={setEmail}/>
             <RegisterInput placeholder='Senha' value={password} setValue={setPassword} isSecureTextEntry={true}/>
             <RegisterInput placeholder='Confirmar senha' value={confirmPassword} setValue={setConfirmPassword} isSecureTextEntry={true}/>
             <RegisterButton onPress={onRegisterPress} title='Registrar'/>
+            <Text>Ao se registrar, você confirma que aceita nossos <Text style={{color: "black"}} onPress={onTermsOfUsePress}>Termos de Uso</Text>
+             e <Text style={{color: "black"}} onPress={onPrivacyPolicyPress}>Política de Privacidade.</Text></Text>
             <RegisterButton onPress={onLoginPress} title='Já possui uma conta?' type='terciary'/>
         </View>
       </ScrollView>
