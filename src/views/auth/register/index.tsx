@@ -35,7 +35,6 @@ const Register = () => {
             <Text style={styles.title}>Books Finder</Text>
             <RegisterInput placeholder='Nome de usuário' value={username} setValue={setUsername}/>
             <RegisterInput placeholder='Senha' value={password} setValue={setPassword} isSecureTextEntry={true}/>
-            <RegisterButton/>
         </View>
     )
 

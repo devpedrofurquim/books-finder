@@ -14,7 +14,7 @@ const RegisterButton = () => {
     
   return (
     <View style={styles.container}>
-      <Text>Regisaaatrar</Text>
+      <Text>TESTE TESTE</Text>
     </View>
   )
 }
