@@ -1,14 +1,14 @@
 import { View, TextInput, StyleSheet } from 'react-native'
 import React, { Dispatch, SetStateAction } from 'react'
 
-interface RegisterInputProps {
+interface InputProps {
     value: string;
     setValue: Dispatch<SetStateAction<string>>;
     placeholder: string;
     isSecureTextEntry?: boolean
 }
 
-const RegisterInput = ({placeholder, value, setValue, isSecureTextEntry} : RegisterInputProps) => {
+const Input = ({placeholder, value, setValue, isSecureTextEntry} : InputProps) => {
 
     const styles = StyleSheet.create({
         container: {
@@ -39,4 +39,4 @@ const RegisterInput = ({placeholder, value, setValue, isSecureTextEntry} : Regis
   )
 }
 
-export default RegisterInput;
+export default Input;

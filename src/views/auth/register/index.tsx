@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Text, View, Image, StyleSheet, useWindowDimensions } from 'react-native';
 import Logo from '../../../../assets/images/logo-book.png';
-import RegisterInput from './_components/register-input';
-import RegisterButton from './_components/register-button';
+import RegisterInput from '../_components/input';
+import RegisterButton from '../_components/button';
 
 const Register = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const { height } = useWindowDimensions();
 
@@ -17,10 +18,6 @@ const Register = () => {
 
     function onLoginPress() {
         console.warn("Login");
-    }
-
-    function onPasswordPress() {
-        console.warn("Password");
     }
 
     const styles = StyleSheet.create({
@@ -47,9 +44,9 @@ const Register = () => {
             <Text style={styles.title}>Books Finder</Text>
             <RegisterInput placeholder='Nome de usuário' value={username} setValue={setUsername}/>
             <RegisterInput placeholder='Senha' value={password} setValue={setPassword} isSecureTextEntry={true}/>
+            <RegisterInput placeholder='Confirmar senha' value={confirmPassword} setValue={setConfirmPassword} isSecureTextEntry={true}/>
             <RegisterButton onPress={onRegisterPress} title='Registrar'/>
             <RegisterButton onPress={onLoginPress} title='Já possui uma conta?' type='secondary'/>
-            <RegisterButton onPress={onPasswordPress} title='Esqueceu sua senha?' type='terciary'/>
         </View>
     )
 

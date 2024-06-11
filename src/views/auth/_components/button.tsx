@@ -1,13 +1,13 @@
 import { Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 
-interface RegisterButtonProps {
+interface ButtonProps {
   title: string;
   onPress: () => void;
   type?: "primary" | "secondary" | "terciary";
 }
 
-const RegisterButton = ({type = "primary", title, onPress} : RegisterButtonProps) => {
+const Button = ({type = "primary", title, onPress} : ButtonProps) => {
 
   const styles = StyleSheet.create({
     container: {
@@ -37,4 +37,4 @@ const RegisterButton = ({type = "primary", title, onPress} : RegisterButtonProps
   )
 }
 
-export default RegisterButton
+export default Button
