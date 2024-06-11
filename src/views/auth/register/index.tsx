@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, Image, StyleSheet, useWindowDimensions } from 'react-native';
 import Logo from '../../../../assets/images/logo-book.png';
 import RegisterInput from './_components/register-input';
+import RegisterButton from './_components/register-button';
 
 const Register = () => {
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
     const { height } = useWindowDimensions();
 
@@ -29,9 +33,12 @@ const Register = () => {
         <View style={styles.root}>
             <Image source={Logo} style={[styles.logo, {height: height * 0.3}]} resizeMode='contain'/>
             <Text style={styles.title}>Books Finder</Text>
-            <RegisterInput/>
+            <RegisterInput placeholder='Nome de usuário' value={username} setValue={setUsername}/>
+            <RegisterInput placeholder='Senha' value={password} setValue={setPassword} isSecureTextEntry={true}/>
+            <RegisterButton/>
         </View>
     )
+
 }
 
 export default Register;
