@@ -1,10 +1,20 @@
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 import React from 'react'
 
 const RegisterButton = () => {
+
+  const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "blue"
+    },
+    button: {
+        
+    }
+  })
+    
   return (
-    <View>
-      <Button title='Registrar'/>
+    <View style={styles.container}>
+      <Text>Regisaaatrar</Text>
     </View>
   )
 }
