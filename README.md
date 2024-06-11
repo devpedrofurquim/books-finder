@@ -1,79 +1,29 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Books Finder
 
-# Getting Started
+Aplicativo desenvolvido com React Native que permite a busca e exibição de
+informações sobre livros utilizando a API OpenLibrary do Internet Archive.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Telas
+1. Tela de Login
+   1. Deve conter dois campos de entrada: Nome de Usuário e Senha.
+   2. Deve incluir um botão "Entrar" que permitirá ao usuário efetuar o login no aplicativo.
+   3. A validação dos campos de entrada deve ser implementada.
+   4. O login deve ser efetuado apenas com o usuário admin e senha admin123.
+2. Tela de Busca de Livros
+   1. Deve conter um campo de entrada de texto: para o que será pesquisado.
+   2. E um botão com as seguintes opções de busca
+      1. Pesquisar livros por autor.
+      2. Pesquisar livros por gênero.
+      3. Pesquisar diretamente pelo nome do livro.
+   3. Cada opção de busca deve estar claramente identificada e acessível ao usuário.
+   4. A busca por autor deve retornar uma lista de livros escritos por esse autor.
+   5. A busca por gênero deve exibir uma lista de livros pertencentes ao gênero especificado.
+   6. A busca por nome de livro deve retornar informações detalhadas sobre o livro procurado.
 
-## Step 1: Start the Metro Server
+## Recursos e Requisitos
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+* Utilize a biblioteca React Native para o desenvolvimento das telas.
+* A interface do usuário deve ser limpa, intuitiva e responsiva.
+* A integração com a API OpenLibrary do Internet Archive é necessária para a busca e exibição de informações sobre os livros.
+* O código deve ser organizado, legível e seguir as melhores práticas de desenvolvimento.
+* Não é permitido o uso de outras bibliotecas
