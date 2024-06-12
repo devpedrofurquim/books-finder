@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 // styles used by Login and Register views
 export const authStyles = StyleSheet.create({
     root: {
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: 20,
     },
     logo: {
         width: '40%',

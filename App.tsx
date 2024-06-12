@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Platform, SafeAreaView, StyleSheet, Text } from 'react-native';
-import Login from './src/views/auth/login';
-import Register from './src/views/auth/register';
+import Navigation from './src/navigation';
 
 function App(): React.JSX.Element {
 
@@ -30,14 +29,13 @@ function App(): React.JSX.Element {
   const styles = StyleSheet.create({
     root: {
       flex: 1,
-      padding: 20,
       backgroundColor: '#f6f6f6'
     },
   })
 
   return (
    <SafeAreaView style={styles.root}>
-    <Login/>
+    <Navigation/>
    </SafeAreaView>
   );
 }
