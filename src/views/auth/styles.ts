@@ -17,5 +17,8 @@ export const authStyles = StyleSheet.create({
         fontWeight: "600",
         padding: 10,
         color: '#000'
+    },
+    error: {
+        color: 'red'
     }
 })
