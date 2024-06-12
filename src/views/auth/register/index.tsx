@@ -4,8 +4,16 @@ import Logo from '../../../../assets/images/logo-book.png';
 import RegisterInput from '../_components/input';
 import RegisterButton from '../_components/button';
 import { authStyles as styles} from '../styles';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AppRoutes } from '../../../navigation/_types/navigation';
+import { useNavigation } from '@react-navigation/native';
+
+type registerRoute = StackNavigationProp<AppRoutes, 'Login'>;
+
 
 const Register = () => {
+
+    const navigation = useNavigation<registerRoute>();
 
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -16,10 +24,15 @@ const Register = () => {
 
     function onRegisterPress() {
         console.warn("Registrar");
+
+        // Validate user
+        navigation.navigate('Home');
     }
 
     function onLoginPress() {
         console.warn("Entrar");
+
+        navigation.navigate('Login')
     }
 
     function onTermsOfUsePress() {

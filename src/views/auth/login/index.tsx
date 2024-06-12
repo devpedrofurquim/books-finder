@@ -4,8 +4,15 @@ import { authStyles as styles} from '../styles';
 import Logo from '../../../../assets/images/logo-book.png'
 import RegisterInput from '../_components/input';
 import RegisterButton from '../_components/button';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AppRoutes } from '../../../navigation/_types/navigation';
+import { useNavigation } from '@react-navigation/native';
+
+type loginRoute = StackNavigationProp<AppRoutes, 'Login'>;
 
 const Login = () => {
+
+    const navigation = useNavigation<loginRoute>();
 
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -14,10 +21,15 @@ const Login = () => {
 
     function onRegisterPress() {
         console.warn("Register");
+        
+        navigation.navigate('Register')
     }
 
     function onLoginPress() {
         console.warn("Login");
+
+        // Validate user
+        navigation.navigate('Home');
     }
 
     return (
