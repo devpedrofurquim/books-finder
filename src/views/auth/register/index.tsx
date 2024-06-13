@@ -16,6 +16,8 @@ const Register = () => {
 
     const navigation = useNavigation<registerRoute>();
 
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -32,34 +34,48 @@ const Register = () => {
         if (!email) errors.email = "Email é necessário";
         if (!confirmPassword) errors.confirmPassword = "Confirmação de senha é necessária";
 
+        if (username && username.length < 3) errors.username = "Nome de usuário muito curto";
+        if (password && password.length < 4) errors.password = "Senha muito curta";
+        if (confirmPassword && confirmPassword !== password) errors.confirmPassword = "Senhas devem ser iguais";
+        if (email && !emailRegex.test(email)) errors.email = "Email deve ser válido";
+
         setErrors(errors)
 
         if (Object.keys(errors).length === 0) return true;
 
     }
 
+    function clearForm() {
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setErrors({});
+    }
+
     function onRegisterPress() {
         if (validateUser()) {
-            setUsername("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-            setErrors({});
-            navigation.navigate("Home");
+            clearForm();
+
+            navigation.navigate("Login");
         }
     }
 
     function onLoginPress() {
-        console.warn("Entrar");
+        clearForm();
 
         navigation.navigate('Login')
     }
 
     function onTermsOfUsePress() {
+        clearForm();
+
         console.warn("Termos de Uso");
     }
 
     function onPrivacyPolicyPress() {
+        clearForm();
+
         console.warn("Política de Privacidade");
     }
 

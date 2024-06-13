@@ -27,8 +27,8 @@ const Login = () => {
 
         if (!username) errors.username = "Nome de usuário é necessário";
         if (!password) errors.password = "Senha é necessária";
-        if (username && username.toLowerCase() !== 'admin') errors.usernameMatch = "Nome de usuário não reconhecido";
-        if (password && password.toLowerCase() !== 'admin123') errors.passwordMatch = "Senha de usuário não reconhecida";
+        if (username && username.toLowerCase() !== 'admin') errors.username = "Nome de usuário não reconhecido";
+        if (password && password.toLowerCase() !== 'admin123') errors.password = "Senha de usuário não reconhecida";
 
         setErrors(errors)
 
@@ -37,20 +37,23 @@ const Login = () => {
 
     const { height } = useWindowDimensions();
 
-    function onRegisterPress() {
+    function cleanForm() {
         setUsername("");
         setPassword("");
         setErrors({});
+    }
+
+    function onRegisterPress() {
+        cleanForm();
+
         navigation.navigate('Register')
     }
 
     function onLoginPress() {
         if (validateUser()) {
-            setUsername("");
-            setPassword("");
-            setErrors({});
+            cleanForm();
+
             navigation.navigate('Home');
-            return true;
         }
     }
 
@@ -65,22 +68,10 @@ const Login = () => {
                             <Text style={styles.error}>{errors.username}</Text>
                     )
                 }
-                {
-                    errors.usernameMatch && (
-                        <Text style={styles.error}>{errors.usernameMatch}</Text>
-
-                    )
-                }
                 <SecureInput placeholder='Senha' value={password} setValue={setPassword}/>
                 {
                     errors.password && (
                         <Text style={styles.error}>{errors.password}</Text>
-                    )
-                }
-                 {
-                    errors.passwordMatch && (
-                        <Text style={styles.error}>{errors.passwordMatch}</Text>
-
                     )
                 }
                 <Button onPress={onLoginPress} title='Entrar'/>
