@@ -4,12 +4,13 @@ import {homeStyles as styles} from '../styles'
 
 interface searchButtonProps {
     title: string;
+    onPress: () => void;
 }
 
-const HomeButton = ({title} : searchButtonProps) => {
+const HomeButton = ({title, onPress} : searchButtonProps) => {
   return (
-      <Pressable style={styles.button}>
-        <Text>{title}</Text>
+      <Pressable style={styles.button} onPress={onPress}>
+        <Text style={styles.buttonTitle}>{title}</Text>
       </Pressable>
   )
 }

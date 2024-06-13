@@ -3,37 +3,58 @@ import { homeStyles as styles} from './styles';
 import Input from '../../../components/input';
 import React, { useEffect, useState } from 'react';
 import HomeButton from './_components/homeButton';
-
-interface Book {
-  cover_i: number;
-  key: string;
-  title: string;
-  author_name: [string];
-  first_publish_year: number;
-}
+import { Book } from '../../../types/book';
 
 const Home = () => {
   const [query, setQuery] = useState<string>('');
   const [data, setData] = useState<Book[]>([]);
 
-  const fetchData = async () => {
-    const baseUrl = 'https://openlibrary.org/search.json?';
+  const fetchData = async (param: string) => {
+    let baseUrl;
+    let response;
+
+    if (param === 'subjects') {
+     baseUrl = 'https://openlibrary.org/subjects/';
+    } else {
+      baseUrl = 'https://openlibrary.org/search.json?';
+    }
+    
     try {
-      const response = await fetch(`${baseUrl}title=${query}&page=1`);
+      if (param === 'subjects') {
+        response = await fetch(`${baseUrl}${query}.json`);
+       } else {
+        response = await fetch(`${baseUrl}${param}=${query}&page=1`);
+       }
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       const result = await response.json();
-      setData(result.docs);
-      console.log("Data Fetched", result.docs);
+      if (param === 'subjects') {
+        setData(result.works);
+        console.log("Data Fetched", result.works);
+      } else {
+        setData(result.docs);
+        console.log("Data Fetched", result.docs);
+      }
     } catch (error) {
       console.error('There was an error fetching data!', error);
     }
   };
 
-  const onBuscar = () => {
-    fetchData();
-  };
+  async function onSearch(param: string) {
+    setQuery(query);
+    switch(param) {
+      case 'title':
+        fetchData(param);
+        break;
+      case 'author':
+        fetchData(param);
+        break;
+      case 'subjects':
+        fetchData(param);
+        break;
+    }
+  }
 
   return (
     <ScrollView showsHorizontalScrollIndicator={false}>
@@ -44,12 +65,16 @@ const Home = () => {
         value={query}
         setValue={setQuery}
       />
-      <HomeButton title='Autor'/>
+      <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+        <HomeButton title='Livro' onPress={() => onSearch('title')}/>
+        <HomeButton title='Autor' onPress={() => onSearch('author')}/>
+        <HomeButton title='Genêro' onPress={() => onSearch('subjects')}/>
+      </View>
       {data.map(book => (
         <View key={book.key}>
           <Text>{book.title}</Text>
           <Text>{book.cover_i}</Text>
-          <Image source={{uri: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}} width={80} height={80}/>
+          <Image source={{uri: `https://covers.openlibrary.org/b/id/${book.cover_i | book.cover_id}-M.jpg`}} width={300} height={400}/>
         </View>
       ))}
     </View>

@@ -12,6 +12,15 @@ export const homeStyles = StyleSheet.create({
         color: '#000'
     },
     button: {
-        
+        backgroundColor: 'gray',
+        borderRadius: 5,
+        marginHorizontal: 10,
+        textAlign: 'center',
+        paddingHorizontal: 20
+    },
+    buttonTitle: {
+        fontSize: 20,
+        color: '#fff',
+        padding: 5
     }
 })
