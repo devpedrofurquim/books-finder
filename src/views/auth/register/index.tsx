@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Text, View, Image, useWindowDimensions, ScrollView } from 'react-native';
 import Logo from '../../../../assets/images/logo-book.png';
-import Input from '../_components/input';
-import Button from '../_components/button';
+import Input from '../../../components/input';
+import Button from '../../../components/button';
 import { authStyles as styles} from '../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppRoutes } from '../../../navigation/_types/navigation';
