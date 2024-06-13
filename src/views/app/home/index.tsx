@@ -3,55 +3,21 @@ import { homeStyles as styles} from './styles';
 import Input from '../../../components/input';
 import React, { useEffect, useState } from 'react';
 import HomeButton from './_components/homeButton';
-import { Book } from '../../../types/book';
+import useBooks from '../../../hooks/useBooks';
 
 const Home = () => {
-  const [query, setQuery] = useState<string>('');
-  const [data, setData] = useState<Book[]>([]);
-
-  const fetchData = async (param: string) => {
-    let baseUrl;
-    let response;
-
-    if (param === 'subjects') {
-     baseUrl = 'https://openlibrary.org/subjects/';
-    } else {
-      baseUrl = 'https://openlibrary.org/search.json?';
-    }
-    
-    try {
-      if (param === 'subjects') {
-        response = await fetch(`${baseUrl}${query}.json`);
-       } else {
-        response = await fetch(`${baseUrl}${param}=${query}&page=1`);
-       }
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const result = await response.json();
-      if (param === 'subjects') {
-        setData(result.works);
-        console.log("Data Fetched", result.works);
-      } else {
-        setData(result.docs);
-        console.log("Data Fetched", result.docs);
-      }
-    } catch (error) {
-      console.error('There was an error fetching data!', error);
-    }
-  };
+  const { query, setQuery, data, fetchData, loading, error } = useBooks('Robert Cecil Martin');
 
   async function onSearch(param: string) {
-    setQuery(query);
     switch(param) {
       case 'title':
-        fetchData(param);
+        await fetchData(param);
         break;
       case 'author':
-        fetchData(param);
+        await fetchData(param);
         break;
       case 'subjects':
-        fetchData(param);
+        await fetchData(param);
         break;
     }
   }
@@ -70,6 +36,8 @@ const Home = () => {
         <HomeButton title='Autor' onPress={() => onSearch('author')}/>
         <HomeButton title='Genêro' onPress={() => onSearch('subjects')}/>
       </View>
+      {loading && <Text>Loading...</Text>}
+      {error && <Text>{error}</Text>}
       {data.map(book => (
         <View key={book.key}>
           <Text>{book.title}</Text>
