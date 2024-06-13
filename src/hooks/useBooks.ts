@@ -13,6 +13,7 @@ export default function useBooks(initialQuery: string) {
     let response;
 
     try {
+        setData([]);
         setError(null);
         setLoading(true);
 

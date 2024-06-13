@@ -3,6 +3,7 @@ import { homeStyles as styles} from './styles';
 import Input from '../../../components/input';
 import HomeButton from './_components/homeButton';
 import useBooks from '../../../hooks/useBooks';
+import Books from './_components/book';
 
 const Home = () => {
   const { query, setQuery, data, fetchData, loading, error } = useBooks('Robert Cecil Martin');
@@ -35,14 +36,10 @@ const Home = () => {
         <HomeButton title='Autor' onPress={() => onSearch('author')}/>
         <HomeButton title='Genêro' onPress={() => onSearch('subjects')}/>
       </View>
-      {loading && <Text>Loading...</Text>}
-      {error && <Text>{error}</Text>}
+      {loading && <Text style={styles.load}>Carregando...</Text>}
+      {error && <Text style={styles.errors}>{error}</Text>}
       {data.map(book => (
-        <View key={book.key}>
-          <Text>{book.title}</Text>
-          <Text>{book.cover_i}</Text>
-          <Image source={{uri: `https://covers.openlibrary.org/b/id/${book.cover_i | book.cover_id}-M.jpg`}} width={300} height={400}/>
-        </View>
+       <Books book={book} key={book.key}/>
       ))}
     </View>
   </ScrollView>
