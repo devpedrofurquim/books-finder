@@ -12,42 +12,43 @@ export default function useBooks(initialQuery: string) {
     let baseUrl;
     let response;
 
-    if (param === 'subjects') {
-     baseUrl = 'https://openlibrary.org/subjects/';
-    } else {
-      baseUrl = 'https://openlibrary.org/search.json?';
-    }
-    
     try {
         setLoading(true);
-        setError(null);
-      if (param === 'subjects') {
-        response = await fetch(`${baseUrl}${query}.json`);
-       } else {
-        response = await fetch(`${baseUrl}${param}=${query}&page=1`);
-       }
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
 
-      const result = await response.json();
+        switch (param) {
+            case 'subjects':
+                baseUrl = 'https://openlibrary.org/subjects/';
+                response = await fetch(`${baseUrl}${query}.json`);
+                break;
+            default:
+                baseUrl = 'https://openlibrary.org/search.json?';
+                response = await fetch(`${baseUrl}${param}=${query}&page=1`);
+                break;
+        }
 
-      if (param === 'subjects') {
-        setData(result.works);
-        console.log("Data Fetched", result.works);
-      } else {
-        setData(result.docs);
-        console.log("Data Fetched", result.docs);
-      }
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+
+        switch(param) {
+            case 'subjects':
+                setData(result.works);
+                break;
+            default:
+                setData(result.docs);
+                break;
+        }
+
     } catch (error) {
-      console.error('There was an error fetching data!', error);
-      console.error(error);
-      setData([]);
-      setError("Requisição não encontrada");
+        console.error("Houve um erro:", error);
+        setData([]);
+        setError("Pesquisa não encontrada");
     } finally {
         setLoading(false);
     }
-  }
+}
 
   useEffect(() => {
     if (query) {
@@ -55,5 +56,5 @@ export default function useBooks(initialQuery: string) {
     }
   }, []);
 
-  return { query, setQuery, data, fetchData, loading, error };
+  return { query, setQuery, data, fetchData, loading, error }
 }

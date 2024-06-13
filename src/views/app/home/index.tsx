@@ -1,7 +1,6 @@
 import { View, Text, ScrollView, Image } from 'react-native'
 import { homeStyles as styles} from './styles';
 import Input from '../../../components/input';
-import React, { useEffect, useState } from 'react';
 import HomeButton from './_components/homeButton';
 import useBooks from '../../../hooks/useBooks';
 
