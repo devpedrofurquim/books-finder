@@ -8,6 +8,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AppRoutes } from '../../../navigation/_types/navigation';
 import { useNavigation } from '@react-navigation/native';
 import { errorsLoginType } from '../../../types/erros';
+import SecureInput from '../_components/secureInput';
 
 type loginRoute = StackNavigationProp<AppRoutes, 'Login'>;
 
@@ -22,8 +23,12 @@ const Login = () => {
     function validateUser() {
         let errors : errorsLoginType = {};
 
+        username.trim();
+
         if (!username) errors.username = "Nome de usuário é necessário";
         if (!password) errors.password = "Senha é necessária";
+        if (username && username.toLowerCase() !== 'admin') errors.usernameMatch = "Nome de usuário não reconhecido";
+        if (password && password.toLowerCase() !== 'admin123') errors.passwordMatch = "Senha de usuário não reconhecida";
 
         setErrors(errors)
 
@@ -33,6 +38,9 @@ const Login = () => {
     const { height } = useWindowDimensions();
 
     function onRegisterPress() {
+        setUsername("");
+        setPassword("");
+        setErrors({});
         navigation.navigate('Register')
     }
 
@@ -54,13 +62,25 @@ const Login = () => {
                 <Input  placeholder='Nome de usuário' value={username} setValue={setUsername}/>
                 {
                     errors.username && (
-                        <Text style={styles.error}>{errors.username}</Text>
+                            <Text style={styles.error}>{errors.username}</Text>
                     )
                 }
-                <Input placeholder='Senha' value={password} setValue={setPassword} isSecureTextEntry={true}/>
+                {
+                    errors.usernameMatch && (
+                        <Text style={styles.error}>{errors.usernameMatch}</Text>
+
+                    )
+                }
+                <SecureInput placeholder='Senha' value={password} setValue={setPassword}/>
                 {
                     errors.password && (
                         <Text style={styles.error}>{errors.password}</Text>
+                    )
+                }
+                 {
+                    errors.passwordMatch && (
+                        <Text style={styles.error}>{errors.passwordMatch}</Text>
+
                     )
                 }
                 <Button onPress={onLoginPress} title='Entrar'/>

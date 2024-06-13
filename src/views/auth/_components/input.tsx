@@ -33,7 +33,7 @@ const Input = ({placeholder, value, setValue, isSecureTextEntry} : InputProps) =
       placeholder={placeholder}
       value={value}
       onChangeText={setValue}
-      secureTextEntry={isSecureTextEntry}
+      autoCapitalize="none"
       ></TextInput>
     </View>
   )
