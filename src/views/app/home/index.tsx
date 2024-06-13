@@ -4,9 +4,12 @@ import Input from '../../../components/input';
 import HomeButton from './_components/homeButton';
 import useBooks from '../../../hooks/useBooks';
 import Books from './_components/book';
+import { useState } from 'react';
 
 const Home = () => {
   const { query, setQuery, data, fetchData, loading, error } = useBooks('Robert Cecil Martin');
+
+  const [pressedButton, setPressedButton] = useState<string | null>(null);
 
   async function onSearch(param: string) {
     switch(param) {
@@ -22,6 +25,11 @@ const Home = () => {
     }
   }
 
+  function onButtonPressed(param: string) {
+    onSearch(param);
+    setPressedButton(param);
+  }
+
   return (
     <ScrollView showsHorizontalScrollIndicator={false}>
     <View style={styles.root}>
@@ -32,9 +40,9 @@ const Home = () => {
         setValue={setQuery}
       />
       <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-        <HomeButton title='Livro' onPress={() => onSearch('title')}/>
-        <HomeButton title='Autor' onPress={() => onSearch('author')}/>
-        <HomeButton title='Genêro' onPress={() => onSearch('subjects')}/>
+        <HomeButton title='Livro' onPress={() => onButtonPressed('title')} isPressed={pressedButton === 'title'}/>
+        <HomeButton title='Autor' onPress={() => onButtonPressed('author')} isPressed={pressedButton === 'author'}/>
+        <HomeButton title='Genêro' onPress={() => onButtonPressed('subjects')} isPressed={pressedButton === 'subjects'}/>
       </View>
       {loading && <Text style={styles.load}>Carregando...</Text>}
       {error && <Text style={styles.errors}>{error}</Text>}

@@ -12,7 +12,6 @@ export const homeStyles = StyleSheet.create({
         color: '#000'
     },
     button: {
-        backgroundColor: 'gray',
         borderRadius: 5,
         marginHorizontal: 10,
         textAlign: 'center',
