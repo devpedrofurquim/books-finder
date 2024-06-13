@@ -13,6 +13,7 @@ export default function useBooks(initialQuery: string) {
     let response;
 
     try {
+        setError(null);
         setLoading(true);
 
         switch (param) {
@@ -34,15 +35,16 @@ export default function useBooks(initialQuery: string) {
 
         switch(param) {
             case 'subjects':
+                if (result.works.length === 0) throw new Error('Network response was not ok');
                 setData(result.works);
                 break;
             default:
+                if (result.docs.length === 0) throw new Error('Network response was not ok');
                 setData(result.docs);
                 break;
         }
 
     } catch (error) {
-        console.error("Houve um erro:", error);
         setData([]);
         setError("Pesquisa não encontrada");
     } finally {
