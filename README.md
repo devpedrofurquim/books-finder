@@ -3,6 +3,14 @@
 Aplicativo desenvolvido com React Native que permite a busca e exibição de
 informações sobre livros utilizando a API OpenLibrary do Internet Archive.
 
+## Informações para rodar o projeto
+
+1. Clone o projeto
+2. npm install
+3. Inicie o emulador Android a partir do Android Studio ou conecte um dispositivo Android via USB.
+4. Rode o comando 'npm run android' ou 'npm start' e escolha a opção 'a' para rodar no ambiente android.
+5. Para realizar os logins é necessário usar, respectivamente, admin e admin123 como login e senha.
+
 ## Telas
 1. Tela de Login
    1. Deve conter dois campos de entrada: Nome de Usuário e Senha.
