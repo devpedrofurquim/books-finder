@@ -11,7 +11,7 @@ const Books = ( { book } : bookProps) => {
   return (
     <View style={styles.container}>
     <Text style={styles.title}>{book.title}</Text>
-    <Text style={styles.author}>{book.author_name}</Text>
+    <Text style={styles.author}>{(book.author_name?.[0] ?? book.authors?.[0]?.name ?? '')}</Text>
     <Image source={{uri: `https://covers.openlibrary.org/b/id/${book.cover_i | book.cover_id}-M.jpg`}} width={300} height={400}/>
   </View>
   )
