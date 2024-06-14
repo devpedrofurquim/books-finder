@@ -48,7 +48,9 @@ export const bookStyles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopEndRadius: 20,
         borderBottomLeftRadius: 20,
-        textAlign: 'center'
+        textAlign: 'center',
+        borderColor: 'gray',
+        borderWidth: 1
     },
     title: {
         fontSize: 20,

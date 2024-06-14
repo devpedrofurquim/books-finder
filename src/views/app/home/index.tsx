@@ -1,12 +1,21 @@
-import { View, Text, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity} from 'react-native'
 import { homeStyles as styles} from './styles';
 import Input from '../../../components/input';
 import HomeButton from './_components/homeButton';
 import useBooks from '../../../hooks/useBooks';
 import Books from './_components/book';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AppRoutes } from '../../../navigation/_types/navigation';
+
+type bookRoute = StackNavigationProp<AppRoutes, 'Home'>;
+
 
 const Home = () => {
+
+  const navigation = useNavigation<bookRoute>();
+
   const { query, setQuery, data, fetchData, loading, error } = useBooks('Robert Cecil Martin');
 
   const [pressedButton, setPressedButton] = useState<string | null>(null);
@@ -47,7 +56,9 @@ const Home = () => {
       {loading && <Text style={styles.load}>Carregando...</Text>}
       {error && <Text style={styles.errors}>{error}</Text>}
       {data.map(book => (
-       <Books book={book} key={book.key}/>
+        <TouchableOpacity key={book.key} activeOpacity={0.9} onPress={() => navigation.navigate('BookUnity', {book})}>
+          <Books book={book}/>
+        </TouchableOpacity>
       ))}
     </View>
   </ScrollView>
